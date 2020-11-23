@@ -34,7 +34,7 @@ def croix(L,ligne,colonne,lettre):
 
 
 def alignement(L,lettre):
-    """fonction qui retourne s'il y a un alignement de a éléments dans la grille"""
+    """fonction qui retourne s'il y a un alignement de n éléments à la suite dans la grille"""
     n=len(L)
     p=0
     #alignement sur ligne
