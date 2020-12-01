@@ -45,10 +45,9 @@ def croix(L,numcase,lettre):
         for j in range(n):
             if L[i][j]==' '+numcase or L[i][j]==numcase:
                 L[i][j]=' '+lettre
-            
                 return format_grille(L)
-    if numcase not in L: 
-        return False
+            
+    return False
     
 
 def alignement_a(L,lettre,a):
