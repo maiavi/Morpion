@@ -6,9 +6,12 @@ Created on Sat Nov 14 17:47:15 2020
 @author: maiavignal
 """
 
-#sélection des case par numéro
+
 #création de liste
 
+def format_grille(L):
+    for x in L:
+        print(x)
 
 def creation_grille(n):
     Liste=[]
@@ -26,20 +29,10 @@ def creation_grille(n):
     print(format_grille(Liste))
     return Liste
 
-# def croix2(L,ligne,colonne,lettre):
-#     n=len(L)
-#     if L[ligne][colonne]!='.':
-#         print("Cette case est déjà occupée par votre adversaire.")
-#         return False
-#     elif ligne>=n or colonne>=n:
-#         print("Cette case n'existe pas dans la grille actuelle")
-#         return False
-#     else:
-#         L[ligne][colonne]=lettre
-    
-#     return format_grille(L)
+
 
 def croix(L,numcase,lettre):
+    """sélection des case par numéro"""
     n=len(L)
     for i in range(n):
         for j in range(n):
@@ -65,7 +58,6 @@ def alignement_a(L,lettre,a):
             p=0
     #alignement sur colonne
 
-    #breakpoint()
 
     for j in range(n):#colonne
         for i in range(n-1):  #ligne      
@@ -97,56 +89,9 @@ def alignement_a(L,lettre,a):
         p=0    
     return False
 
-def alignement(L,lettre):
-    """fonction qui retourne s'il y a un alignement de n éléments dans la grille"""
-    n=len(L)
-    p=0
-    #alignement sur ligne
-    for i in range(n):
-        for x in L[i]:
-            if x==lettre:
-                p+=1
-        if p==n:
-            return True
-        else:
-            p=0
-    #alignement sur colonne
 
-    #breakpoint()
 
-    for j in range(n):#colonne
-        for i in range(n):  #ligne      
-            if L[i][j]==lettre:
-                p+=1
-        if p==n:
-            return True
-        else:
-            p=0    
-            
-    #alignement sur diagonale haut gauche bas droite
-            
-    for i in range(n):
-        if L[i][i]==lettre  :
-            p+=1
-    if p==n:
-        return True
-    else:
-        p=0   
-    #alignement sur diagonale haut gauche bas droite
 
-                
-    for i, j in zip(range(n), range(1,n+1)):
-        if L[i][n-j]==lettre:
-            p+=1
-    if p==n:
-        return True
-    else:
-        p=0    
-    return False
-
-def format_grille(L):
-    for x in L:
-        print(x)
         
 ##boucle de jeu
 
