@@ -2,9 +2,9 @@
 
 INTRODUCTION
 
-Comme vous le connaissez déjà surement, ce doux jeu que l'on nomme Morpion, qui s'apprend dès le plus jeune âge à la récréation ou dans les salles de cours pour les moins concentrés, est aussi ludique que stratégique et nous plonge dans l'anticipation du jeu de l'adversaire.
+Comme vous le connaissez déjà surement, ce doux jeu que l'on nomme Morpion, s'apprennant dès le plus jeune âge à la récréation ou dans les salles de cours pour les moins concentrés, est aussi ludique que stratégique et nous plonge dans l'anticipation du jeu de l'adversaire.
 
-En effet,bien qu'il soit généralement composé d'une grille 3x3, nous l'avons voulu modelable au goût des joueurs, c'est d'ailleurs pourquoi il vous est possible de choisir le nombre de case de votre grille.
+En effet, bien qu'il soit généralement composé d'une grille 3x3, nous l'avons voulu modelable au goût des joueurs, c'est d'ailleurs pourquoi il vous est possible de choisir le nombre de case de votre grille.
 De même afin que les joueurs puissent sélectionner leur niveau de difficulté nous avons également inclus la sélection d'un nombre minimal d'alignement (il vous est conseillé de considérer des alignements supérieurs ou égaux à 3).
 
 Nous avons souhaité réaliser un jeu accessible au plus grand nombre, c'est pourquoi un affichage est réalisé directement sur votre terminal, sous forme de grille, rendant la partie plus lisible et intéressante.
@@ -27,9 +27,13 @@ La fonction alignement_a(L,lettre,a) permet de déterminer si a symboles sont al
 
 BOUCLE DE JEU
 
+Notre boucle de jeu est composée d'une suite de "input" dont les réponses sont stockés dans des variables. Au début état='perdant', puis état='gagnant' si l'un des deux deux joueurs gagne la partie.
+La grande boucle while représente la boucle de jeu qui s'arrête s'il y a eu une victoire ou un match nul. On initialise les différents paramètres permettant de créer la grille G, d'un nombre de cases n x n, d'alignements a. Puis on demande son symbole au premier joueur et on le fait jouer. On fait de même pour le second.
+La boucle while imbriquée permet de créer la vraie boucle, tant qu'il n'y a aucun alignement elle tourne. Si un joueur souhaite placer sa croix ou son rond à un emplacement déjà occupé ou à une case inexistante, le jeu renvoie un message d'erreur et demande au joueur de choisir une nouvelle case. 
+
+A la fin, le programme vérifie lequel des joueurs a gagné et renvoie un message au vainqueur ou dans le cas contraire, un message indiquant un match nul.
 
 
+#A ajouter
 Les différentes étapes de votre reflexion pour faire le projet
-L'explication de chaque fonction(Plus global, seulement :- quels sont les arguments - qu'est-ce qu'elle renvoie)
-Votre boucle de jeu etc
 
