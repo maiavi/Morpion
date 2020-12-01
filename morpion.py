@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
@@ -43,8 +44,9 @@ def croix(L,numcase,lettre):
     n=len(L)
     for i in range(n):
         for j in range(n):
-            if L[i][j]==numcase:
+            if L[i][j]==' '+numcase or L[i][j]==numcase:
                 L[i][j]=' '+lettre
+            
                 return format_grille(L)
     if numcase not in L: 
         print("Cette case n'existe plus ou pas dans la grille actuelle")
@@ -223,5 +225,6 @@ elif alignement_a(G,lettre2,a)==True:
 
 else:
     print("Match nul!")
+
 
 
