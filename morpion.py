@@ -81,7 +81,7 @@ def alignement_a(L,lettre,a):
 
                 
     for i, j in zip(range(n), range(1,n+1)):
-        if L[i][n-j]==' '+lettre:
+        if L[i][n-j]==' '+lettre and L[i][n-j]==L[i+1][n-j-1]:
             p+=1
     if p+1>=a:
         return True
