@@ -2,7 +2,7 @@ from turtle import Screen, Turtle
 from turtle import *
 
 
-N = 4  # N by N grid
+N = 3  # N by N grid
 LENGTH = N * 20  # each grid element will be LENGTH x LENGTH pixels
 
 def grid(turtle, n, length):
@@ -33,19 +33,10 @@ List = []
 for j in range ((N**2) + 1):
     List.append(j)
 
-
-#Point = [
-#    (-LENGTH,LENGTH),(0,LENGTH),(LENGTH,LENGTH),
-#    (-LENGTH,0),(0,0),(LENGTH,0),
-#    (-LENGTH,-LENGTH),(0,-LENGTH),(LENGTH,-LENGTH)
-#]
-
-Point = [
-    (-LENGTH - N,LENGTH),(0,1),(0,2),
-    (1,0),(1,1),(1,2),
-    (1,0),(1,1),(1,2),
-    (-LENGTH,-LENGTH),(0,-LENGTH),(LENGTH,-LENGTH)
-]
+Point =[ (-
+200,200),(0,200),(200,200),(-
+200,0),(0,0),(200,0),(-200,-200),(0,-
+200),(200,-200)] 
 
 i=0
 print(LENGTH)
