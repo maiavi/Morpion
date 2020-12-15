@@ -3,7 +3,7 @@ from turtle import *
 
 
 N = 3  # N by N grid
-LENGTH = N * 20  # each grid element will be LENGTH x LENGTH pixels
+LENGTH = 200  # each grid element will be LENGTH x LENGTH pixels
 
 def grid(turtle, n, length):
     sign = 1
@@ -36,10 +36,7 @@ for j in range ((N**2) + 1):
 Point =[ (-
 200,200),(0,200),(200,200),(-
 200,0),(0,0),(200,0),(-200,-200),(0,-
-200),(200,-200)] 
-
-i=0
-print(LENGTH)
+200),(200,-200)]
 while i<N**2:
     up()
     goto(Point[i])
