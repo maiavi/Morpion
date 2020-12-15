@@ -38,14 +38,29 @@ Point =[ (-
 200,200),(0,200),(200,200),(-
 200,0),(0,0),(200,0),(-200,-200),(0,-
 200),(200,-200)]
+i=0
 while i<N**2:
-    up()
-    goto(Point[i])
-    down()
-    write(List[i])
+    yertle.penup()
+    yertle.goto(Point[i])
+    yertle.pendown()
+    yertle.write(List[i])
     i=i+1
-    up()
+    yertle.penup()
 
+
+def rond(numero):
+  Points = [(-200,150),(0,150),(200,150),(-
+  200,- 50),(0,-50),(200,-50),(-200,-250),(0,-
+  250),(200,-250)]
+  yertle.width(5)
+  yertle.color('green')
+  yertle.goto(Points[numero-1])
+  yertle.pendown()
+  yertle.circle(50)
+  yertle.penup()
+  yertle.goto(-350,0)
+  yertle.color('black')
+  yertle.width(1)
 
 
 screen.exitonclick()
