@@ -10,6 +10,7 @@ def grid(turtle, n, length):
     for _ in range(2):
 
         for _ in range(n):
+            turtle.speed(8)
             turtle.forward(length * n)
             turtle.left(sign * 90)
             turtle.forward(length)
