@@ -2,7 +2,7 @@
 
 INTRODUCTION
 
-Comme vous le connaissez déjà surement, ce doux jeu que l'on nomme Morpion, s'apprenant dès le plus jeune âge à la récréation ou dans les salles de cours pour les moins concentrés, est aussi ludique que stratégique et nous plonge dans l'anticipation du jeu de l'adversaire.
+Comme vous le connaissez déjà surement, ce doux jeu que l'on nomme Morpion est aussi ludique que stratégique et nous plonge dans l'anticipation du jeu de l'adversaire.
 
 En effet, bien qu'il soit généralement composé d'une grille 3x3, nous l'avons voulu modulable par les joueurs, c'est d'ailleurs pourquoi il vous est possible de choisir le nombre de case de votre grille.
 De même afin que les joueurs puissent sélectionner leur niveau de difficulté nous avons également inclus la sélection d'un nombre minimal d'alignement (il vous est conseillé de considérer des alignements supérieurs ou égaux à 3).
