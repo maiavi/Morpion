@@ -257,7 +257,6 @@ while Etat=='perdant':
                     numcase=input('''Indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
 
                 
-            #croix(G,numcase,lettre1)
 
             #premier jeu joueur 2
             NomJoueur2=input("Vous serez le joueur 2 .\nQuel est votre nom ?")
