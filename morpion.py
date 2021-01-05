@@ -233,18 +233,28 @@ while Etat=='perdant':
     #initialisation des grilles
     n = int(input("Bienvenue dans le Super Morpion 2020.\nEntrez le nombre de case n que vous souhaitez avoir sur une ligne, de votre grille de taille n x n : n="))
     if n==3:
-        interfacegraphique()
-        L=creation_grille(n)
-        G=grille_vide(n)
-        a=int(input("Quel nombre d'alignement minimal choisissez-vous?(inférieur ou égal à "+str(n)+"):"))
-        NomJoueur1=input("Vous serez le joueur 1 .\nQuel est votre nom:")
-        lettre1=input("Indiquez votre symbole pour cette partie (X ou O):")
-        numcase=input('''Indiquez le numéro de la case où vous souhaitez jouer:''')
-    #boucle vérifiant que la case n'est pas déjà prise
-        while croix(L,G,numcase,lettre1)==False:
-            print("Cette case n'existe plus ou pas dans la grille actuelle")
+        réponse=input("Vous souhaitez jouer sur le terminal (T) ou sur l'interface graphique (IG) ? (écrivez T ou IG):")
+        if réponse=="IG":
+            interfacegraphique()
+            Etat='gagnant'
 
-            numcase=input('''Indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
+        else:
+            L=creation_grille(n)
+            G=grille_vide(n)
+            a=int(input("Quel nombre d'alignement minimal choisissez-vous?(inférieur ou égal à "+str(n)+"):"))
+        
+            #premier jeu du joueur 1
+            
+            NomJoueur1=input("Vous serez le joueur 1 .\nQuel est votre nom:")
+            lettre1=input("Indiquez votre symbole pour cette partie (X ou O):")
+            numcase=input('''Indiquez le numéro de la case où vous souhaitez jouer:''')
+
+
+            #boucle vérifiant que la case n'est pas déjà prise
+            while croix(L,G,numcase,lettre1)==False:
+                    print("Cette case n'existe plus ou pas dans la grille actuelle")
+
+                    numcase=input('''Indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
 
                 
             #croix(G,numcase,lettre1)
@@ -303,95 +313,11 @@ while Etat=='perdant':
                     i+=1
             Etat='gagnant'
             
-        if alignement_a(G,lettre1,a)==True:
-            print("Félicitations "+NomJoueur1+", vous avez gagné !")
+            if alignement_a(G,lettre1,a)==True:
+                print("Félicitations "+NomJoueur1+", vous avez gagné !")
             
-        elif alignement_a(G,lettre2,a)==True:
-            print("Félicitations "+NomJoueur2+", vous avez gagné !")
+            elif alignement_a(G,lettre2,a)==True:
+                print("Félicitations "+NomJoueur2+", vous avez gagné !")
 
-        else:
-            print("Match nul!")
-    else:
-        L=creation_grille(n)
-        G=grille_vide(n)
-        a=int(input("Quel nombre d'alignement minimal choisissez-vous?(inférieur ou égal à "+str(n)+"):"))
-    
-    #premier jeu du joueur 1
-    
-    NomJoueur1=input("Vous serez le joueur 1 .\nQuel est votre nom:")
-    lettre1=input("Indiquez votre symbole pour cette partie (X ou O):")
-    numcase=input('''Indiquez le numéro de la case où vous souhaitez jouer:''')
-
-
-    #boucle vérifiant que la case n'est pas déjà prise
-    while croix(L,G,numcase,lettre1)==False:
-            print("Cette case n'existe plus ou pas dans la grille actuelle")
-
-            numcase=input('''Indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
-
-        
-    #croix(G,numcase,lettre1)
-
-    #premier jeu joueur 2
-    NomJoueur2=input("Vous serez le joueur 2 .\nQuel est votre nom ?")
-    if lettre1=='X':
-        lettre2='O'
-    else:
-        lettre2='X'
-
-    #lettre2=input("Indiquez votre symbole pour cette partie (X ou O):")
-    
-    numcase=input('''Indiquez le numéro de la case où vous souhaitez jouer:''')
-
-    
-    while croix(L,G,numcase,lettre2)==False:
-        print("Cette case n'existe plus ou pas dans la grille actuelle")
-
-        numcase=input(NomJoueur2+''', indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
-
-        
-
-    
-    croix(L,G,numcase,lettre2)
-    
-
-    i=2
-    #cette boucle vérifie qu'aucun des deux joueurs n'a gagné et que i, qui est le compteur du nombre de jeux, est différent de la somme de toutes les cases, c'est à dire pas de match nul
-    while alignement_a(G,lettre1,a)!=True and alignement_a(G,lettre2,a)!=True and i!=n*n:
-        
-        #joueur 1
-        numcase=input(NomJoueur1+''', indiquez le numéro de la case où vous souhaitez jouer:''')
-    
-        while croix(L,G,numcase,lettre1)==False:
-            print("Cette case n'existe plus ou pas dans la grille actuelle")
-
-            numcase=input(NomJoueur1+''', indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
-
-
-        
-        croix(L,G,numcase,lettre1)
-        i+=1
-        #joueur2
-        if i!=n*n and alignement_a(G,lettre1,a)!=True:
-
-            numcase=input(NomJoueur2+''', indiquez le numéro de la case où vous souhaitez jouer:''')
-
-            while  croix(L,G,numcase,lettre2)==False:
-                print("Cette case n'existe plus ou pas dans la grille actuelle")
-
-                numcase=input(NomJoueur2+''', indiquez le numéro de la case où vous souhaitez jouer:''')
-
-            croix(L,G,numcase,lettre2)
-        
-            i+=1
-    Etat='gagnant'
-    
-if alignement_a(G,lettre1,a)==True:
-    print("Félicitations "+NomJoueur1+", vous avez gagné !")
-    
-elif alignement_a(G,lettre2,a)==True:
-    print("Félicitations "+NomJoueur2+", vous avez gagné !")
-
-else:
-    print("Match nul!")
-
+            elif i==n*n:
+                print("Match nul!")
