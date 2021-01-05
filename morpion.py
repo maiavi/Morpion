@@ -1,11 +1,122 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Nov 14 17:47:15 2020
+from tkinter import *
 
-@author: maiavignal
-"""
+def interfacegraphique():
+# Variables globales
+    cases=[ [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]]
+    player = True                     # True pour les croix, False pour les ronds
+    t = 1                              # Numéro du tour de jeu
+    lignes = []                          #permet la creation des lignes et colonnes            
 
+
+    ##Définition des Fonctions ##
+    def afficher(event) :
+        """ event -> Un événement de la souris
+            but de la fonction: Affiche  les coordonnées de la case du clic de souris"""
+        global player, cases, t
+        l = (event.y-2)//100                    # Ligne du clic
+        c = (event.x-2)//100                    # Colonne du clic
+
+        if (t < 10) and (cases[l][c] == 0):
+            if player:                              # player == True==croix
+                dessin.create_line(100*c+8, 100*l+8, 100*c+96, 100*l+96, width = 5, fill = 'red')
+                dessin.create_line(100*c+8, 100*l+96, 100*c+96, 100*l+8, width = 5, fill = 'red')
+                cases[l][c] = 1
+                message.configure(text='Tour du joueur 2')
+
+            else:
+                dessin.create_oval(100*c+8, 100*l+8, 100*c+96, 100*l+96, width = 5, outline = 'blue')
+                cases[l][c] = -1
+                message.configure(text='Tour du joueur 1')
+
+            player = not(player)
+            if (t >= 5) and (t <= 9):
+                somme = alignement(cases)
+                if somme == 1 or somme == -1:
+                    t = vainqueur(somme)
+                elif t == 9:
+                    t = vainqueur(0)
+            t += 1
+
+
+    def alignement(tableau):
+        """ tableau-> un tableau format n=3""
+            but da la fonction: Calcule les sommes de chaque ligne/colonne/diagonale
+                et vérifie leur alignement."""
+        sommes = [0,0,0,0,0,0,0,0]            
+        # Les lignes :
+        sommes[0] = sum(tableau[0])
+        sommes[1] = sum(tableau[1])
+        sommes[2] = sum(tableau[2])
+        # Les colonnes
+        sommes[3] = tableau[0][0]+tableau[1][0]+tableau[2][0]
+        sommes[4] = tableau[0][1]+tableau[1][1]+tableau[2][1]
+        sommes[5] = tableau[0][2]+tableau[1][2]+tableau[2][2]
+        # Les diagonales
+        sommes[6] = tableau[0][0]+tableau[1][1]+tableau[2][2]
+        sommes[7] = tableau[0][2]+tableau[1][1]+tableau[2][0]
+
+        for i in range(8):                     # Parcours des sommes
+            if sommes[i] == 3:
+                return 1
+            elif sommes[i] == -3:
+                return -1
+        return 0
+
+
+
+    def vainqueur(a):
+        """indique le vainqueur en modifiant le message."""
+        if a == 1:
+            message.configure(text = 'Joueur 1 a gagné !')
+        elif a == -1:
+            message.configure(text = 'Joueur 2 a gagné !')
+        elif a == 0:
+            message.configure(text = 'Match nul !')
+        return 9
+
+
+
+    def reinit():
+        """on ré-initialise les variables globales."""
+        global player, cases, t
+        cases = [[0, 0, 0],
+                [0, 0, 0],
+                [0, 0, 0]]
+        player= True          # True pour les croix, False pour les ronds
+        t = 1
+
+        message.configure(text='Tour du joueur 1')
+        dessin.delete(ALL)      # Efface le jeu précedent 
+        lignes = []
+        for i in range(4):
+            lignes.append(dessin.create_line(0, 100*i+2, 303, 100*i+2, width=3))
+            lignes.append(dessin.create_line(100*i+2, 0, 100*i+2, 303, width=3))
+
+
+
+    #Fenêtres
+    fen = Tk()
+    fen.title('Morpion')
+    #zones de texte
+    message=Label(fen, text='Tour du joueur 1')
+    message.grid(row = 0, column = 0, columnspan=2, padx=3, pady=3, sticky = W+E)
+    #boutons
+    bouton_quitter = Button(fen, text='Quitter', command=fen.destroy)
+    bouton_quitter.grid(row = 2, column = 1, padx=3, pady=3, sticky = S+W+E)
+
+    bouton_reload = Button(fen, text='Recommencer', command=reinit)
+    bouton_reload.grid(row = 2, column = 0, padx=3, pady=3, sticky = S+W+E)
+
+    #Création du canevas
+    dessin=Canvas(fen, bg="white", width=301, height=301)
+    dessin.grid(row = 1, column = 0, columnspan = 2, padx=5, pady=5)
+
+    dessin.bind('<Button-1>', afficher)
+    ## lancement du jeu
+    reinit()
+    fen.mainloop()     
 
 def format_grille(L):
     """renvoie les éléments de la liste L"""
@@ -17,11 +128,11 @@ def creation_grille(n):
     """création d'une grille de taille n x n, contenant le numéro des cases"""
     Liste=[]
     case=[]
-    c=0
+    c=0 
     for i in range(n):
         for j in range(n):
             c+=1
-            #la distinction entre c<=9 et c>9 est réalisé par soucis de lisibilité dans la grille car un nombre à deux chiffres prends la place de deux caractères 
+                #la distinction entre c<=9 et c>9 est réalisé par soucis de lisibilité dans la grille car un nombre à deux chiffres prends la place de deux caractères 
             if c<=9:
                 case.append(' '+str(c))
             else:
@@ -121,9 +232,89 @@ while Etat=='perdant':
 
     #initialisation des grilles
     n = int(input("Bienvenue dans le Super Morpion 2020.\nEntrez le nombre de case n que vous souhaitez avoir sur une ligne, de votre grille de taille n x n : n="))
-    L=creation_grille(n)
-    G=grille_vide(n)
-    a=int(input("Quel nombre d'alignement minimal choisissez-vous?(inférieur ou égal à "+str(n)+"):"))
+    if n==3:
+        interfacegraphique()
+        L=creation_grille(n)
+        G=grille_vide(n)
+        a=int(input("Quel nombre d'alignement minimal choisissez-vous?(inférieur ou égal à "+str(n)+"):"))
+        NomJoueur1=input("Vous serez le joueur 1 .\nQuel est votre nom:")
+        lettre1=input("Indiquez votre symbole pour cette partie (X ou O):")
+        numcase=input('''Indiquez le numéro de la case où vous souhaitez jouer:''')
+    #boucle vérifiant que la case n'est pas déjà prise
+        while croix(L,G,numcase,lettre1)==False:
+            print("Cette case n'existe plus ou pas dans la grille actuelle")
+
+            numcase=input('''Indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
+
+                
+            #croix(G,numcase,lettre1)
+
+            #premier jeu joueur 2
+            NomJoueur2=input("Vous serez le joueur 2 .\nQuel est votre nom ?")
+            if lettre1=='X':
+                lettre2='O'
+            else:
+                lettre2='X'
+
+            #lettre2=input("Indiquez votre symbole pour cette partie (X ou O):")
+            
+            numcase=input('''Indiquez le numéro de la case où vous souhaitez jouer:''')
+
+            
+            while croix(L,G,numcase,lettre2)==False:
+                print("Cette case n'existe plus ou pas dans la grille actuelle")
+
+                numcase=input(NomJoueur2+''', indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
+
+                
+
+            
+            croix(L,G,numcase,lettre2)
+            
+
+            i=2
+            #cette boucle vérifie qu'aucun des deux joueurs n'a gagné et que i, qui est le compteur du nombre de jeux, est différent de la somme de toutes les cases, c'est à dire pas de match nul
+            while alignement_a(G,lettre1,a)!=True and alignement_a(G,lettre2,a)!=True and i!=n*n:
+                
+                #joueur 1
+                numcase=input(NomJoueur1+''', indiquez le numéro de la case où vous souhaitez jouer:''')
+            
+                while croix(L,G,numcase,lettre1)==False:
+                    print("Cette case n'existe plus ou pas dans la grille actuelle")
+
+                    numcase=input(NomJoueur1+''', indiquez le numéro de la nouvelle case où vous souhaitez jouer:''')
+
+
+                
+                croix(L,G,numcase,lettre1)
+                i+=1
+                #joueur2
+                if i!=n*n and alignement_a(G,lettre1,a)!=True:
+
+                    numcase=input(NomJoueur2+''', indiquez le numéro de la case où vous souhaitez jouer:''')
+
+                    while  croix(L,G,numcase,lettre2)==False:
+                        print("Cette case n'existe plus ou pas dans la grille actuelle")
+
+                        numcase=input(NomJoueur2+''', indiquez le numéro de la case où vous souhaitez jouer:''')
+
+                    croix(L,G,numcase,lettre2)
+                
+                    i+=1
+            Etat='gagnant'
+            
+        if alignement_a(G,lettre1,a)==True:
+            print("Félicitations "+NomJoueur1+", vous avez gagné !")
+            
+        elif alignement_a(G,lettre2,a)==True:
+            print("Félicitations "+NomJoueur2+", vous avez gagné !")
+
+        else:
+            print("Match nul!")
+    else:
+        L=creation_grille(n)
+        G=grille_vide(n)
+        a=int(input("Quel nombre d'alignement minimal choisissez-vous?(inférieur ou égal à "+str(n)+"):"))
     
     #premier jeu du joueur 1
     
@@ -203,5 +394,4 @@ elif alignement_a(G,lettre2,a)==True:
 
 else:
     print("Match nul!")
-
 
