@@ -17,9 +17,7 @@ def creation_grille(n):
     """création d'une grille de taille n x n, contenant le numéro des cases"""
     Liste=[]
     case=[]
-    c=0 
-    if n<3:
-        return
+    c=0
     for i in range(n):
         for j in range(n):
             c+=1
