@@ -47,13 +47,17 @@ Pour créer cette interface on s'est appuyé sur le module tkinter, notre dispos
 
   1) La création de variables globales qui composent les différentes cases, les joueurs, le numero de tour de jeu et les lignes
   
-  2) La definitions des différentes fonctions auxquelles on va faire appel : - La fonction afficher(event) qui a pour but d'afficher les coordonnées de la case sur laquelle la souris à cliquer 
-                                                                            - Par la suite elle permet de créer les croix et les ronds en jouant sur les coordonnées des lignes et des colonnes definies grâces à l'outils dessin.create_line à condition que le tour de jeu soit inférieur à 10.  -La fonction intègre une boucle conditionnelle qui au bout du 5ème tour identifie les perdants et gagnants en s'appuyant sur les fonctions alignemment(tableau) et vainqueur(a) 
-                                                                            -La fonction alignement(tableau) permet d'identifier les différents alignements effectués par nos joueurs (diagonales,colonnes et lignes ) et calcul leurs sommes. Lorsque celle-ci égale 3 ( c'est-à-dire que trois croix sont alignées),la fonction retourne 1, tandis qu'elle vaut -1 si les ronds sont alignés, 0 sinon.                                                                    
-                                                                            -La fonction vainqueur(a) quant à elle prend en argument la somme calculée par la fonction alignement et affiche le vainqueur grâce à l'outils, message.configure(text = 'Joueur x a gagné !') . Lorsque a égale zéro on est face à un match nul.
-                                                                            -La fonction reinit() permet de réinitialiser nos variables globales et d'effacer l'ensemble du jeu précédent, dessin.delete(ALL), puis reconstruit une liste composée des lignes et colonnes du jeu.
+  2) La definitions des différentes fonctions auxquelles on va faire appel : 
+  
+  La fonction afficher(event) qui a pour but d'afficher les coordonnées de la case sur laquelle la souris à cliquer 
+ Par la suite elle permet de créer les croix et les ronds en jouant sur les coordonnées des lignes et des colonnes definies grâces à l'outils dessin.create_line à condition que le tour de jeu soit inférieur à 10.  
+La fonction intègre une boucle conditionnelle qui au bout du 5ème tour identifie les perdants et gagnants en s'appuyant sur les fonctions alignemment(tableau) et vainqueur(a) 
+                                                                            
+ La fonction alignement(tableau) permet d'identifier les différents alignements effectués par nos joueurs (diagonales,colonnes et lignes ) et calcul leurs sommes. Lorsque celle-ci égale 3 ( c'est-à-dire que trois croix sont alignées),la fonction retourne 1, tandis qu'elle vaut -1 si les ronds sont alignés, 0 sinon.                                                                    
+ La fonction vainqueur(a) quant à elle prend en argument la somme calculée par la fonction alignement et affiche le vainqueur grâce à l'outils, message.configure(text = 'Joueur x a gagné !') . Lorsque a égale zéro on est face à un match nul.
+La fonction reinit() permet de réinitialiser nos variables globales et d'effacer l'ensemble du jeu précédent, dessin.delete(ALL), puis reconstruit une liste composée des lignes et colonnes du jeu.
 
-                                                                                                                           
+   
                                                                             
 3) Création de notre fenêtre de jeu : avec affichages d'un message pour les tours des joueurs, construction des boutons "quitter" et "recommencer", création de grilles et colonnes du jeu.
 
