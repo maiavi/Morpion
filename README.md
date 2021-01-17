@@ -2,7 +2,7 @@
 
 
 Comme vous le connaissez surement déjà, ce palpitant jeu que l'on nomme Morpion aussi ludique que stratégique, nous plonge dans l'art de l'anticipation depuis notre plus tendre enfance.
-Bien qu'il soit généralement composé d'une grille 3x3, le Super Morpion 2020 se veut modulable par les joueurs, c'est d'ailleurs pourquoi il vous est possible de choisir le nombre de case de votre grille dès le début du jeu (pour une grille n x n, 2<n<10 pour faciliter la lecture du jeu ).
+Bien qu'il soit généralement composé d'une grille 3x3, le Super Morpion 2020 se veut modulable par les joueurs, c'est donc la raison pour laquelle il vous est possible de choisir le nombre de cases de votre grille dès le début du jeu (pour une grille n x n, 2<n<10 pour faciliter la lecture du jeu ).
 De même, pour que les joueurs puissent gérer leur niveau de difficulté nous avons également inclus la sélection d'un nombre minimal d'alignement (il vous est demandé de choisir des alignements égaux ou inférieurs de 1 à la taille d'une ligne ).
 
 Nous avons souhaité réaliser un jeu accessible, c'est pourquoi un affichage sous forme de grille est réalisé directement sur votre terminal. De plus pour les grille de taille 3x3, il est possible d'afficher une interface graphique.
